@@ -30,15 +30,16 @@ endif
 all: apds9960_f446re.elf
 
 dependents:
-	-cd C:/work/workspace_stm/nucleo-f446re_stdperiph_lib/Debug && $(MAKE) clean all
-	-cd C:/work/workspace_stm/lib_uart/Debug && $(MAKE) clean all
-	-cd C:/work/workspace_stm/lib_sysTick/Debug && $(MAKE) clean all
+	-cd C:/work/workspace_stm/nucleo-f446re_stdperiph_lib/Debug && $(MAKE) all
+	-cd C:/work/workspace_stm/lib_uart/Debug && $(MAKE) all
+	-cd C:/work/workspace_stm/lib_sysTick/Debug && $(MAKE) all
+	-cd C:/work/workspace_stm/lib_i2c/Debug && $(MAKE) all
 
 # Tool invocations
-apds9960_f446re.elf: $(OBJS) $(USER_OBJS) C:/work/workspace_stm/nucleo-f446re_stdperiph_lib/Debug/libnucleo-f446re_stdperiph_lib.a C:/work/workspace_stm/lib_uart/Debug/liblib_uart.a C:/work/workspace_stm/lib_sysTick/Debug/liblib_sysTick.a C:\work\workspace_stm\apds9960_f446re/LinkerScript.ld
+apds9960_f446re.elf: $(OBJS) $(USER_OBJS) C:/work/workspace_stm/nucleo-f446re_stdperiph_lib/Debug/libnucleo-f446re_stdperiph_lib.a C:/work/workspace_stm/lib_uart/Debug/liblib_uart.a C:/work/workspace_stm/lib_sysTick/Debug/liblib_sysTick.a C:/work/workspace_stm/lib_i2c/Debug/liblib_i2c.a C:\work\workspace_stm\apds9960_f446re/LinkerScript.ld
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -L"C:\work\workspace_stm\lib_sysTick\Debug" -L"C:\work\workspace_stm\lib_uart\Debug" -L"C:\work\workspace_stm\nucleo-f446re_stdperiph_lib\Debug" -T"C:/work/workspace_stm/apds9960_f446re/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "apds9960_f446re.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -L"C:\work\workspace_stm\lib_i2c\Debug" -L"C:\work\workspace_stm\lib_sysTick\Debug" -L"C:\work\workspace_stm\lib_uart\Debug" -L"C:\work\workspace_stm\nucleo-f446re_stdperiph_lib\Debug" -T"C:/work/workspace_stm/apds9960_f446re/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "apds9960_f446re.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
@@ -59,5 +60,6 @@ post-build:
 C:/work/workspace_stm/nucleo-f446re_stdperiph_lib/Debug/libnucleo-f446re_stdperiph_lib.a:
 C:/work/workspace_stm/lib_uart/Debug/liblib_uart.a:
 C:/work/workspace_stm/lib_sysTick/Debug/liblib_sysTick.a:
+C:/work/workspace_stm/lib_i2c/Debug/liblib_i2c.a:
 
 -include ../makefile.targets

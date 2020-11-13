@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -llib_sysTick -llib_uart -lnucleo-f446re_stdperiph_lib
+LIBS := -llib_i2c -llib_sysTick -llib_uart -lnucleo-f446re_stdperiph_lib
 

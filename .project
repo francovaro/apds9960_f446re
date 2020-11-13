@@ -6,6 +6,7 @@
 		<project>nucleo-f446re_stdperiph_lib</project>
 		<project>lib_uart</project>
 		<project>lib_sysTick</project>
+		<project>lib_i2c</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
