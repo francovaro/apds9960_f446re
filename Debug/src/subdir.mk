@@ -5,18 +5,21 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/apds9960.c \
+../src/delay.c \
 ../src/main.c \
 ../src/syscalls.c \
 ../src/system_stm32f4xx.c 
 
 OBJS += \
 ./src/apds9960.o \
+./src/delay.o \
 ./src/main.o \
 ./src/syscalls.o \
 ./src/system_stm32f4xx.o 
 
 C_DEPS += \
 ./src/apds9960.d \
+./src/delay.d \
 ./src/main.d \
 ./src/syscalls.d \
 ./src/system_stm32f4xx.d 

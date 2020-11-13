@@ -9,7 +9,7 @@
 */
 
 #include "lib_uart.h"
-#include "lib_systick.h"
+#include "delay.h"
 #include "apds9660.h"
 
 #include "stm32f4xx.h"
@@ -19,7 +19,7 @@
 
 int main(void)
 {
-	libsystick_set_systick(1000);
+	Delay_init();
 	UART_lib_config(e_UART_2, DISABLE, 0, 0);
 	apds_init();
 

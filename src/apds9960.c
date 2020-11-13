@@ -8,17 +8,24 @@
  */
 #include "lib_i2c.h"
 #include "apds9660.h"
+#include "apds_flag.h"
+#include "delay.h"
 
 #include "stm32f4xx.h"
 
 /** ---------------------------------- DEFINE ------------------------ */
 #define		I2C_OWN_ADDRESS	(0x00)
+#define		APDS_ADDRESS	(0x39)
 
 /* Turn on pin*/
 #define APDS_INTERRUPT_PIN		GPIO_Pin_11
 #define APDS_INTERRUPT_PORT		GPIOA
 #define APDS_INTERRUPT_SOURCE	EXTI_PinSource11
 #define APDS_EXT_LINE			EXTI_Line11
+
+/** ---------------------------------- PRIVATE DATA ------------------------ */
+volatile t_apds_status _apds_actual_status;
+static const t_i2c_number	_apds_i2c = e_i2c_1;
 
 /** ---------------------------------- PUBLIC FUNCTIONS IMPLEMENTATION ------------------------ */
 /**
@@ -66,8 +73,33 @@ void apds_init(void)
 	NVIC_Init(&NVIC_InitStructure);
 
 	/* init i2c 1*/
-	lib_I2C_init(e_i2c_1, I2C_OWN_ADDRESS);
+	lib_I2C_init(_apds_i2c, I2C_OWN_ADDRESS);
+
+	/* Initialzie time 5.7ms */
+	Delay_ms(6u);
+	_apds_actual_status = e_apds_sleep;
+
 }
+
+/**
+ *
+ * @return
+ */
+t_apds_status apds_get_state(void)
+{
+	return _apds_actual_status;
+}
+
+/**
+ *
+ */
+void apds_write_generic_(uint8_t address, uint8_t data)
+{
+	uint8_t command[] = {address, data};
+
+	lib_I2C_write_nbyte(_apds_i2c, command, 2, APDS_ADDRESS);
+}
+
 
 /** ---------------------------------- IRQ HANDLER IMPLEMENTATION ------------------------ */
 /**

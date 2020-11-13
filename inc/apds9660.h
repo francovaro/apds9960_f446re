@@ -10,6 +10,12 @@
 #ifndef INC_APDS9660_H_
 #define INC_APDS9660_H_
 
+#include "apds_register.h"
+
+/*
+ *
+ */
+
 typedef enum
 {
 	e_apds_sleep,
@@ -22,6 +28,7 @@ typedef enum
 }t_apds_status;
 
 extern void apds_init(void);
+extern t_apds_status apds_get_state(void);
 
 
 #endif /* INC_APDS9660_H_ */
