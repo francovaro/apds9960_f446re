@@ -10,6 +10,8 @@
 #ifndef INC_APDS_REGISTER_H_
 #define INC_APDS_REGISTER_H_
 
+#include <stdint.h>
+
 typedef enum
 {
 	e_register_ENABLE = 0x80,

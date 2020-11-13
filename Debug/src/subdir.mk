@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/apds9960.c \
+../src/apds_proximity.c \
 ../src/delay.c \
 ../src/main.c \
 ../src/syscalls.c \
@@ -12,6 +13,7 @@ C_SRCS += \
 
 OBJS += \
 ./src/apds9960.o \
+./src/apds_proximity.o \
 ./src/delay.o \
 ./src/main.o \
 ./src/syscalls.o \
@@ -19,6 +21,7 @@ OBJS += \
 
 C_DEPS += \
 ./src/apds9960.d \
+./src/apds_proximity.d \
 ./src/delay.d \
 ./src/main.d \
 ./src/syscalls.d \

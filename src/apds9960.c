@@ -11,6 +11,8 @@
 #include "apds_flag.h"
 #include "delay.h"
 
+#include "apds_proximity.h"
+
 #include "stm32f4xx.h"
 
 /** ---------------------------------- DEFINE ------------------------ */
@@ -92,14 +94,31 @@ t_apds_status apds_get_state(void)
 
 /**
  *
+ * @param address
+ * @param data
  */
-void apds_write_generic_(uint8_t address, uint8_t data)
+void apds_write_generic(uint8_t address, uint8_t data)
 {
 	uint8_t command[] = {address, data};
 
 	lib_I2C_write_nbyte(_apds_i2c, command, 2, APDS_ADDRESS);
 }
 
+/**
+ *
+ * @param address
+ * @param data
+ * @return
+ */
+uint8_t apds_read_generic(uint8_t address, uint8_t* data)
+{
+	uint8_t byte_read = 0;
+	uint8_t command[] = {address, *data};
+
+	byte_read = lib_I2C_read_nbyte(_apds_i2c, command, 2, APDS_ADDRESS);
+
+	return byte_read;
+}
 
 /** ---------------------------------- IRQ HANDLER IMPLEMENTATION ------------------------ */
 /**
@@ -115,7 +134,56 @@ void EXTI15_10_IRQHandler(void)
 		{
 			/*
 			 * what to do?
+			 * depends on the engine running?
+			 * so the status ?
 			 */
+			switch(_apds_actual_status)
+			{
+				case e_apds_sleep:
+				{
+					/* */
+					apds_write_generic(e_register_PICLEAR, 0x00);
+				}
+				break;
+				case e_apds_idle:
+				{
+					/* */
+					apds_write_generic(e_register_CICLEAR, 0x00);
+				}
+				break;
+				case e_apds_prox:
+				{
+					/* */
+					apds_read_result();
+					apds_write_generic(e_register_PICLEAR, 0x00);
+				}
+				break;
+				case e_apds_gesture:
+				{
+					/* */
+					apds_write_generic(e_register_CICLEAR, 0x00);
+				}
+				break;
+				case e_apds_wait:
+				{
+					/* */
+					apds_write_generic(e_register_CICLEAR, 0x00);
+				}
+				break;
+				case e_apds_color:
+				{
+					/* */
+					apds_write_generic(e_register_CICLEAR, 0x00);
+				}
+				break;
+				default:
+				case e_apds_max:
+				{
+					/* */
+					apds_write_generic(e_register_CICLEAR, 0x00);
+				}
+				break;
+			}
 		}
 
 	}
