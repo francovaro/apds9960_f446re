@@ -36,11 +36,13 @@
 									<listOptionValue builtIn="false" value="USE_STDPERIPH_DRIVER"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.1875864855" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_uart}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/CMSIS/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/CMSIS/device}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/StdPeriph_Driver/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_uart/inc}&quot;"/>
 								</option>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c.1455445908" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s.19455853" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s"/>
@@ -51,9 +53,11 @@
 							</tool>
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.linker.205404952" name="MCU GCC Linker" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.linker">
 								<option id="gnu.c.link.option.paths.1839164442" name="Library search path (-L)" superClass="gnu.c.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_uart/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/Debug}&quot;"/>
 								</option>
 								<option id="gnu.c.link.option.libs.932361796" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="lib_uart"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="nucleo-f446re_stdperiph_lib"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1404299083" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
@@ -65,11 +69,13 @@
 							<tool id="fr.ac6.managedbuild.tool.gnu.archiver.1221142177" name="MCU GCC Archiver" superClass="fr.ac6.managedbuild.tool.gnu.archiver"/>
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.assembler.867659645" name="MCU GCC Assembler" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler">
 								<option id="gnu.both.asm.option.include.paths.1285266403" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_uart}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/CMSIS/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/CMSIS/device}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nucleo-f446re_stdperiph_lib/StdPeriph_Driver/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_uart/inc}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1277034524" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.assembler.input.1489344345" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler.input"/>
@@ -83,11 +89,18 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="nucleo-f446re_stdperiph_lib;fr.ac6.managedbuild.config.gnu.cross.lib.debug.1391476706" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+				<externalSettings containerId="nucleo-f446re_stdperiph_lib;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/nucleo-f446re_stdperiph_lib"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/nucleo-f446re_stdperiph_lib/Debug"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="nucleo-f446re_stdperiph_lib" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<externalSettings containerId="lib_uart;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/lib_uart"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/lib_uart/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="lib_uart" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
 			</storageModule>
@@ -196,4 +209,6 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>
