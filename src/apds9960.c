@@ -75,7 +75,7 @@ void apds_init(void)
 	NVIC_Init(&NVIC_InitStructure);
 
 	/* init i2c 1*/
-	lib_I2C_init(_apds_i2c, I2C_OWN_ADDRESS);
+	lib_I2C_init(_apds_i2c, I2C_OWN_ADDRESS, Delay_us);
 
 	/* Initialzie time 5.7ms */
 	Delay_ms(6u);
@@ -113,9 +113,9 @@ void apds_write_generic(uint8_t address, uint8_t data)
 uint8_t apds_read_generic(uint8_t address, uint8_t* data)
 {
 	uint8_t byte_read = 0;
-	uint8_t command[] = {address, *data};
+	uint8_t data_read[] = {address, *data};
 
-	byte_read = lib_I2C_read_nbyte(_apds_i2c, command, 2, APDS_ADDRESS);
+	byte_read = lib_I2C_read_nbyte(_apds_i2c, data_read, APDS_ADDRESS);
 
 	return byte_read;
 }
