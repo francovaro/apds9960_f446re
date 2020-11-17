@@ -21,6 +21,9 @@ volatile static t_proximity_error _p_error;
  * Detect/release events are interrupt driven, and occur whenever proximity result crosses
  * upper and/or lower threshold settings.
  */
+/**
+ *
+ */
 void apds_start_proximity_engine(void)
 {
 	_p_saturation = RESET;
@@ -33,6 +36,7 @@ void apds_start_proximity_engine(void)
 	 * Start ENABLE REGISTER:
 	 * - ENABLE_REGISTER_PON = 1
 	 * - ENABLE_REGISTER_PEN = 1
+	 * what about saturation interrupt ?
 	 */
 	apds_write_generic(e_register_ENABLE, ENABLE_REGISTER_PON | ENABLE_REGISTER_PEN);
 	/*
@@ -52,7 +56,11 @@ void apds_start_proximity_engine(void)
 	 */
 }
 
-void apds_read_result(uint8_t from_interrupt)
+/**
+ *
+ * @param from_interrupt
+ */
+void apds_proximity_read_result(uint8_t from_interrupt)
 {
 	uint8_t can_read = ERROR;
 	uint8_t	read_data;
@@ -103,6 +111,76 @@ void apds_read_result(uint8_t from_interrupt)
 	{
 		_p_error = e_proximity_error_data_not_valid;
 	}
+}
 
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_ppulse(uint8_t flag)
+{
+	apds_write_generic(e_register_PPULSE, flag);
+}
 
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_control(uint8_t flag)
+{
+	apds_write_generic(e_register_CONTROL, flag);
+}
+
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_config2(uint8_t flag)
+{
+	apds_write_generic(e_register_CONFIG2, flag);
+}
+
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_config3(uint8_t flag)
+{
+	apds_write_generic(e_register_CONFIG3, flag);
+}
+
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_proximity_low_threshold(uint8_t flag)
+{
+	apds_write_generic(e_register_PILT, flag);
+}
+
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_proximity_high_threshold(uint8_t flag)
+{
+	apds_write_generic(e_register_PIHT, flag);
+}
+
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_proximity_offset_ur(uint8_t flag)
+{
+	apds_write_generic(e_register_POFFSET_UR, flag);
+}
+
+/**
+ *
+ * @param flag
+ */
+void apds_proximity_set_proximity_offset_dl(uint8_t flag)
+{
+	apds_write_generic(e_register_POFFSET_DL, flag);
 }

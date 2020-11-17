@@ -23,4 +23,14 @@ typedef enum
 extern void apds_start_proximity_engine(void);
 extern void apds_proximity_read_result(uint8_t from_interrupt);
 
+extern void apds_proximity_set_ppulse(uint8_t flag);
+extern void apds_proximity_set_control(uint8_t flag);
+extern void apds_proximity_set_config2(uint8_t flag);
+extern void apds_proximity_set_config3(uint8_t flag);
+extern void apds_proximity_set_proximity_low_threshold(uint8_t flag);
+extern void apds_proximity_set_proximity_high_threshold(uint8_t flag);
+extern void apds_proximity_set_proximity_offset_ur(uint8_t flag);
+extern void apds_proximity_set_proximity_offset_dl(uint8_t flag);
+
+
 #endif /* INC_APDS_PROXIMITY_H_ */
