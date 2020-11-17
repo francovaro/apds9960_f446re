@@ -12,6 +12,9 @@
 
 #include <stdint.h>
 
+#define APDS_READ_FROM_INTERRUPT	(1u)
+#define APDS_READ_FROM_POLLING		(0u)
+
 typedef enum
 {
 	e_register_ENABLE = 0x80,

@@ -154,7 +154,7 @@ void EXTI15_10_IRQHandler(void)
 				case e_apds_prox:
 				{
 					/* */
-					apds_read_result();
+					apds_read_result(APDS_READ_FROM_INTERRUPT);
 					apds_write_generic(e_register_PICLEAR, 0x00);
 				}
 				break;

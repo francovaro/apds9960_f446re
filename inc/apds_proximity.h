@@ -10,8 +10,17 @@
 #ifndef INC_APDS_PROXIMITY_H_
 #define INC_APDS_PROXIMITY_H_
 
-extern void apds_start_proximity_engine(void);
-extern void apds_read_result(void);
+#include <stdint.h>
 
+typedef enum
+{
+	e_proximity_error_none,
+	e_proximity_error_saturation,
+	e_proximity_error_data_not_valid,
+	e_proximity_error_max
+}t_proximity_error;
+
+extern void apds_start_proximity_engine(void);
+extern void apds_read_result(uint8_t from_interrupt);
 
 #endif /* INC_APDS_PROXIMITY_H_ */
