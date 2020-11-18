@@ -31,7 +31,7 @@ typedef enum
 	e_register_PPULSE = 0x8E,
 	e_register_CONTROL = 0x8F,
 	e_register_CONFIG2 = 0x90,
-	e_register_ID = 0x92,
+	e_register_ID = 0x92,		/* ID Register (0x92) */
 	e_register_STATUS = 0x93,
 	e_register_CDATAL = 0x94,
 	e_register_CDATAH = 0x95,

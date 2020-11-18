@@ -123,6 +123,7 @@ void apds_proximity_read_result(uint8_t from_interrupt)
  * @note The Proximity Pulse Count Register sets Pulse Width Modified current during a Proximity Pulse. The proximity pulse
  * count register bits set the number of pulses to be output on the LDR pin. The Proximity Length register bits set the
  * amount of time the LDR pin is sinking current during a proximity pulse
+ * reset value = 0x40
  * @param flag
  */
 void apds_proximity_set_ppulse(uint8_t flag)
