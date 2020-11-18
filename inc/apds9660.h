@@ -11,6 +11,9 @@
 #define INC_APDS9660_H_
 
 #include "apds_register.h"
+#include "stm32f4xx.h"
+
+#define APDS_IDENTIFICATION	(0xAB)
 
 /*
  *
@@ -27,7 +30,7 @@ typedef enum
 	e_apds_max
 }t_apds_status;
 
-extern void apds_init(void);
+extern ErrorStatus apds_init(void);
 extern t_apds_status apds_get_state(void);
 
 extern void apds_write_generic(uint8_t address, uint8_t data);

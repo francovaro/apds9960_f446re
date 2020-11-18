@@ -40,6 +40,8 @@
 #define CONFIG2_LDRIVE		(1<<6)	/* Clear Photodiode Saturation Interrupt Enable */
 #define CONFIG2_LED_BOOST	(0x30)	/* Additional LDR current during proximity and gesture LED pulses */
 
+#define CONFIG2_PROXIMITY_VALID_FLAG	(CONFIG2_PSIEN | CONFIG2_LED_BOOST)
+
 /* Status Register 0x93 */
 #define STATUS_REGISTER_CPSAT	(1<<7)	/* Clear Photodiode Saturation */
 #define STATUS_REGISTER_PGSAT	(1<<6)	/* Indicates that an analog saturation event occurred during a previous proximity or gesture cycle.  */
@@ -63,9 +65,9 @@
 #define GESTURE_CONFIG1_REGISTER_GEXPERS	(0x03)
 
 /* Gesture Configuration Two Register (0xA3) */
-#define GESTURE_CONFIG1_REGISTER_GGAIN		(0x60)
-#define GESTURE_CONFIG1_REGISTER_GLDRIVE	(0x18)
-#define GESTURE_CONFIG1_REGISTER_GWTIME		(0x05)
+#define GESTURE_CONFIG2_REGISTER_GGAIN		(0x60)
+#define GESTURE_CONFIG2_REGISTER_GLDRIVE	(0x18)
+#define GESTURE_CONFIG2_REGISTER_GWTIME		(0x05)
 
 /* Gesture Pulse Count and Length Register (0xA6) */
 #define GESTURE_PULSE_COUNT_LENGTH_REGISTER_GPLEN	(0xC0)

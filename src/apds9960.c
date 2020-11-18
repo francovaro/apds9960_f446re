@@ -13,8 +13,6 @@
 
 #include "apds_proximity.h"
 
-#include "stm32f4xx.h"
-
 /** ---------------------------------- DEFINE ------------------------ */
 #define		I2C_OWN_ADDRESS	(0x00)
 #define		APDS_ADDRESS	(0x39)
@@ -33,9 +31,13 @@ static const t_i2c_number	_apds_i2c = e_i2c_1;
 /**
  * @brief Initialize the communcation channel with the sensor and the input pin to receive interrupt on falling edge
  */
-void apds_init(void)
+ErrorStatus apds_init(void)
 {
-	GPIO_InitTypeDef 			GPIO_InitStructure;
+	ErrorStatus apds_initialized = ERROR;
+	uint8_t		read_data;
+	uint8_t 	byte_read;
+
+	GPIO_InitTypeDef GPIO_InitStructure;
 	EXTI_InitTypeDef EXTI_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
@@ -81,6 +83,14 @@ void apds_init(void)
 	Delay_ms(6u);
 	_apds_actual_status = e_apds_sleep;
 
+	byte_read = apds_read_generic(e_register_ID, &read_data);
+	if ((byte_read != 0)
+		&& (read_data == APDS_IDENTIFICATION))
+	{
+		apds_initialized = SUCCESS;
+	}
+
+	return apds_initialized;
 }
 
 /**

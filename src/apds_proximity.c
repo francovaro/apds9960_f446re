@@ -137,7 +137,16 @@ void apds_proximity_set_ppulse(uint8_t flag)
  */
 void apds_proximity_set_control(uint8_t flag)
 {
-	apds_write_generic(e_register_CONTROL, flag);
+	uint8_t	read_data;
+	uint8_t byte_read;
+
+	byte_read = apds_read_generic(e_register_CONTROL,&read_data);
+
+	if (byte_read > 0)
+	{
+		flag = (read_data & (~CONTROL_REGISTER_ONE_PGAIN)) & (flag & CONTROL_REGISTER_ONE_PGAIN); /* just set stuff related to proximity */
+		apds_write_generic(e_register_CONTROL, flag);
+	}
 }
 
 /**
@@ -146,7 +155,17 @@ void apds_proximity_set_control(uint8_t flag)
  */
 void apds_proximity_set_config2(uint8_t flag)
 {
-	apds_write_generic(e_register_CONFIG2, flag);
+	uint8_t	read_data;
+	uint8_t byte_read;
+
+	byte_read = apds_read_generic(e_register_CONFIG2,&read_data);
+
+	if (byte_read > 0)
+	{
+		flag = (read_data & (~CONFIG2_PROXIMITY_VALID_FLAG)) & (flag & CONFIG2_PROXIMITY_VALID_FLAG); /* just set stuff related to proximity */
+		apds_write_generic(e_register_CONFIG2, flag);
+	}
+
 }
 
 /**
