@@ -30,6 +30,15 @@ typedef enum
 	e_apds_max
 }t_apds_status;
 
+typedef enum
+{
+	e_apds_engine_none		= 0,
+	e_apds_engine_proximity = 1,
+	e_apds_engine_gesture 	= 2,
+	e_apds_engine_color		= 4,
+	e_apds_engine_max 		= 8
+}t_apds_engine;
+
 extern ErrorStatus apds_init(void);
 extern t_apds_status apds_get_state(void);
 
