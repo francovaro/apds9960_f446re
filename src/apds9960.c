@@ -1,4 +1,4 @@
-/*
+/**
  *  @file  : apds9960.c
  *	
  *  @brief : Source code to interface an apds9960
@@ -24,8 +24,9 @@
 #define APDS_EXT_LINE			EXTI_Line11
 
 /** ---------------------------------- PRIVATE DATA ------------------------ */
-volatile t_apds_status _apds_actual_status;
+static volatile t_apds_status _apds_actual_status;
 static const t_i2c_number	_apds_i2c = e_i2c_1;
+static uint8_t				_apds_engine = e_apds_engine_none;
 
 /** ---------------------------------- PUBLIC FUNCTIONS IMPLEMENTATION ------------------------ */
 /**
@@ -130,6 +131,29 @@ uint8_t apds_read_generic(uint8_t address, uint8_t* data)
 	return byte_read;
 }
 
+/**
+ *
+ */
+void apds_start_engine(uint8_t engine_flag)
+{
+	if ((engine_flag & e_apds_engine_proximity) == e_apds_engine_proximity)
+	{
+		apds_start_proximity_engine();
+		_apds_actual_status = e_apds_prox;
+	}
+
+	if ((engine_flag & e_apds_engine_gesture) == e_apds_engine_gesture)
+	{
+
+	}
+
+	if ((engine_flag & e_apds_engine_color) == e_apds_engine_color)
+	{
+
+	}
+
+	_apds_engine = engine_flag;
+}
 /** ---------------------------------- IRQ HANDLER IMPLEMENTATION ------------------------ */
 /**
  * @note From datasheet - INT pin Interrupt - open drain (active low)

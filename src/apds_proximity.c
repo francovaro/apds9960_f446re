@@ -1,4 +1,4 @@
-/*
+/**
  *  @file  : apds_proximity.c
  *	
  *  @brief : Proximity engine handling. See datasheet pag 11
